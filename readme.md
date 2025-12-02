@@ -1,6 +1,11 @@
-//node_Modules,package.json,package-lock.json
-installed express
-created a server
-listen to the port 3000
-wrote request handlers to /home,/test,/hello,/
-installed nodemon..
+- node_Modules,package.json,package-lock.json
+- installed express
+- created a server
+- listen to the port 3000
+- wrote request handlers to /home,/test,/hello,/
+- installed nodemon..
+- initialize gitinit
+- .gitignore
+- create a remote repo on github
+- push all code to remote origin
+- Order of the routes is very important

@@ -3,19 +3,23 @@ const express = require("express");
 const app = express();
 
 //request handler
-app.use("/", (req, res) => {
-  res.send("Welcome sriram Cherukuri server!");
-});
-app.use("/test", (req, res) => {
-  res.send("Hello From the server!");
+
+//This will match al the http methods api calls to test
+// app.use("/test", (req, res) => {
+//   res.send("Hello From the server!");
+// });
+
+//this only handles GET Calls
+app.get("/user", (req, res) => {
+  res.send({ firstnamwe: "Sriram", Lastname: "Cherukuri" });
 });
 
-app.use("/hello", (req, res) => {
-  res.send("Hello hello hello server!");
+app.post("/user", (req, res) => {
+  res.send("Data has been posted to DataBase..!");
 });
 
-app.use("/Home", (req, res) => {
-  res.send("Home page From the server!");
+app.delete("/user", (req, res) => {
+  res.send("User has been deleted from DataBase..!");
 });
 
 app.listen(3000, () => {
