@@ -10,17 +10,18 @@ const app = express();
 // });
 
 //this only handles GET Calls
-app.get("/user", (req, res) => {
-  res.send({ firstnamwe: "Sriram", Lastname: "Cherukuri" });
+app.get("/user/:userid/:name/:password", (req, res) => {
+  console.log(req.params);
+  res.send({ firstname: "Sriram", Lastname: "Cherukuri" });
 });
 
-app.post("/user", (req, res) => {
-  res.send("Data has been posted to DataBase..!");
-});
+// app.post("/user", (req, res) => {
+//   res.send("Data has been posted to DataBase..!");
+// });
 
-app.delete("/user", (req, res) => {
-  res.send("User has been deleted from DataBase..!");
-});
+// app.delete("/user", (req, res) => {
+//   res.send("User has been deleted from DataBase..!");
+// });
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
