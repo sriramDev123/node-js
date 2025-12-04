@@ -9,3 +9,11 @@
 - create a remote repo on github
 - push all code to remote origin
 - Order of the routes is very important
+
+- Multiple Routes Handlers
+- next()
+- next() function and errors along with res.send()
+- Middlewares
+- Express js basically handles requests
+- diff b/w app.use() & app.all()
+- auth middlewares for admin and user
