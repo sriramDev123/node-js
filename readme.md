@@ -17,3 +17,11 @@
 - Express js basically handles requests
 - diff b/w app.use() & app.all()
 - auth middlewares for admin and user
+
+- created free cluster on MongoDB offical website(Mongo Altas)
+- i monogoose
+- connected our application to DataBase "Connection URL"/devTinder
+- call the ConnectDB function and connect the Database before listening to the server port 3000
+- Created User Schema and User model
+- Create POST /signup API to add data to database
+- Push Some Documents using API calls from postman
