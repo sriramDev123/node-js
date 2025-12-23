@@ -25,3 +25,5 @@
 - Created User Schema and User model
 - Create POST /signup API to add data to database
 - Push Some Documents using API calls from postman
+- Add the express.json middleware at top of app
+- Make signup Api dynamic to receive data from the end user.
