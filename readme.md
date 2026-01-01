@@ -27,3 +27,7 @@
 - Push Some Documents using API calls from postman
 - Add the express.json middleware at top of app
 - Make signup Api dynamic to receive data from the end user.
+
+- Validate the data coming from signup Api/ req.body
+- instsall bcrpyt package
+- Hashed passwords and stored in DataBase..

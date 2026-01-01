@@ -1,21 +1,35 @@
 const express = require("express");
 const { connectDB } = require("./config/database");
-const User = require("./models/user");
-
 const app = express();
+const User = require("./models/user");
+const { validateSignupData } = require("./utils/validation");
+const bcrypt = require("bcryptjs");
 
 app.use(express.json());
 
 app.post("/signup", async (req, res) => {
-  //creating a new instance of User model
-  const user = new User(req.body);
-
   try {
-    const savedUser = await user.save();
+    //when user signup validate the dataa coming from signup API/req.body
+    validateSignupData(req);
+    console.log(req.body);
+    //hash the password before saving to database
+    const { firstname, lastname, email, password } = req.body;
+
+    const hashesPassword = await bcrypt.hash(password, 10);
+
+    //creating a new instance of User model
+    const user = new User({
+      firstname,
+      lastname,
+      email,
+      password: hashesPassword,
+    });
+
     await user.save();
     res.send("User signed up successfully");
   } catch (err) {
-    res.status(500).send("Error signing up user", err.message);
+    console.log(err.message);
+    res.status(400).send("ERROR :" + err.message);
   }
 });
 
@@ -79,8 +93,8 @@ app.patch("/userupdate/:userId", async (req, res) => {
 connectDB()
   .then(() => {
     console.log("Database connected successfully");
-    app.listen(3000, () => {
-      console.log("Server is Listening on port 3000");
+    app.listen(7777, () => {
+      console.log("Server is Listening on port 7777");
     });
   })
   .catch((err) => {
