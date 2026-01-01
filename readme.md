@@ -31,3 +31,4 @@
 - Validate the data coming from signup Api/ req.body
 - instsall bcrpyt package
 - Hashed passwords and stored in DataBase..
+- Created a login API
