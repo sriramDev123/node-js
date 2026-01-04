@@ -32,3 +32,11 @@
 - instsall bcrpyt package
 - Hashed passwords and stored in DataBase..
 - Created a login API
+
+- Install Cookie Parser
+- Create a Cookie for JWT
+- Install Jsonwebtoken
+- create a JWT token
+- keep JWT inside cookie and sent to user while login
+- create a /profile API to get profile info of user logged in
+- verify the token and shows user profile data

@@ -4,8 +4,11 @@ const app = express();
 const User = require("./models/user");
 const { validateSignupData } = require("./utils/validation");
 const bcrypt = require("bcryptjs");
+const cookieParser = require("cookie-parser");
+const jwt = require("jsonwebtoken");
 
 app.use(express.json());
+app.use(cookieParser());
 
 app.post("/signup", async (req, res) => {
   try {
@@ -46,10 +49,40 @@ app.post("/login", async (req, res) => {
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (isPasswordValid) {
-      res.send("User logged in successfully");
+      //create a JWT Token
+
+      const token = await jwt.sign({ _id: user._id }, "DEV@Tinder$790");
+
+      // Create a cookie and out JWT inside and send back to user
+      res.cookie("token", token);
+
+      res.send(" Login successfully.....!");
     } else {
       throw new Error("Invalid password");
     }
+  } catch (err) {
+    res.status(400).send("ERROR :" + err.message);
+  }
+});
+
+app.get("/profile", async (req, res) => {
+  try {
+    const cookies = req.cookies;
+    const { token } = cookies;
+
+    if (!token) {
+      throw new Error("Token Invalid");
+    }
+    //validate my token
+    const decodedMessage = await jwt.verify(token, "DEV@Tinder$790");
+    const { _id } = decodedMessage;
+    const user = await User.findById(_id);
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    res.send(user);
   } catch (err) {
     res.status(400).send("ERROR :" + err.message);
   }
@@ -115,8 +148,8 @@ app.patch("/userupdate/:userId", async (req, res) => {
 connectDB()
   .then(() => {
     console.log("Database connected successfully");
-    app.listen(7777, () => {
-      console.log("Server is Listening on port 7777");
+    app.listen(8888, () => {
+      console.log("Server is Listening on port 8888");
     });
   })
   .catch((err) => {
